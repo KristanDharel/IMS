@@ -1,0 +1,10 @@
+<p>role-form-component works!</p>
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+  <div>
+    <label>Role:</label>
+    <input type="text" name="role" [(ngModel)]="model.role" required />
+  </div>
+
+  <button type="submit">{{ role ? "Update" : "Create" }} role</button>
+  <button type="button" (click)="onCancel()">Cancel</button>
+</form>

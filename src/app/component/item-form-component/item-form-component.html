@@ -1,0 +1,29 @@
+<p>item-form-component works!</p>
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+  <div>
+    <label>Item Name:</label>
+    <input type="text" name="name" [(ngModel)]="model.itemName" required />
+  </div>
+
+  <div>
+    <label>Item Quantity:</label>
+    <input
+      type="number"
+      name="itemQuantity"
+      [(ngModel)]="model.itemQuantity"
+      required
+    />
+  </div>
+  <div>
+    <label>Item Price:</label>
+    <input
+      type="number"
+      name="itemPrice"
+      [(ngModel)]="model.itemPrice"
+      required
+    />
+  </div>
+
+  <button type="submit">{{ item ? "Update" : "Create" }} User</button>
+  <button type="button" (click)="onCancel()">Cancel</button>
+</form>

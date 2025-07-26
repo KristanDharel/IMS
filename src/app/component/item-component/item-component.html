@@ -4,34 +4,34 @@
     class="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
     (click)="addNew()"
   >
-    Add User
+    Add Item
   </button>
 
   <div *ngIf="!showForm" class="overflow-x-auto">
     <table class="min-w-full border border-gray-300">
       <thead>
         <tr class="bg-gray-100 text-left">
-          <th class="px-4 py-2 border">Name</th>
-          <th class="px-4 py-2 border">Email</th>
-          <th class="px-4 py-2 border">Role</th>
-          <th class="px-4 py-2 border">Actions</th>
+          <th class="px-4 py-2 border">Item Name</th>
+          <th class="px-4 py-2 border">Item Quantity</th>
+          <th class="px-4 py-2 border">Item Price</th>
+          <th class="px-4 py-2 border">Item Added</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users" class="hover:bg-gray-50">
-          <td class="px-4 py-2 border">{{ user.name }}</td>
-          <td class="px-4 py-2 border">{{ user.email }}</td>
-          <td class="px-4 py-2 border">{{ user.role }}</td>
+        <tr *ngFor="let item of items" class="hover:bg-gray-50">
+          <td class="px-4 py-2 border">{{ item.itemName }}</td>
+          <td class="px-4 py-2 border">{{ item.itemQuantity }}</td>
+          <td class="px-4 py-2 border">{{ item.itemPrice }}</td>
           <td class="px-4 py-2 border">
-            <button class="mr-2 text-blue-600" (click)="updateUser(user)">
+            <button class="mr-2 text-blue-600" (click)="updateItem(item)">
               Edit
             </button>
-            <button class="text-red-600" (click)="deleteUser(user.id)">
+            <button class="text-red-600" (click)="deleteItem(item.id)">
               Delete
             </button>
           </td>
         </tr>
-        <tr *ngIf="users.length === 0">
+        <tr *ngIf="items.length === 0">
           <td colspan="4" class="text-center text-gray-500 p-4">
             No users found.
           </td>
@@ -39,12 +39,10 @@
       </tbody>
     </table>
   </div>
-
-
   <div *ngIf="showForm">
-    <app-user-form-component
-      [user]="selectedUser"
+    <app-item-form-component
+      [item]="selectedItem"
       (formClose)="onFormClose()"
-    ></app-user-form-component>
+    ></app-item-form-component>
   </div>
 </div>

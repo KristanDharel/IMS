@@ -16,18 +16,13 @@ export class UserComponent implements OnInit {
   users: UserInterface[] = [];
   selectedUser: UserInterface | null = null;
   showForm = false;
-  constructor(
-    private userController: UserController,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor(private userController: UserController) {}
   ngOnInit(): void {
     this.loadUsers();
   }
   loadUsers() {
     this.userController.getAllUsers().subscribe((users) => {
       this.users = users;
-
-      this.cdr.detectChanges();
     });
   }
   updateUser(user: UserInterface) {

@@ -1,0 +1,68 @@
+<div class="p-6 max-w-3xl mx-auto bg-white rounded-xl shadow-md space-y-6">
+  <h2 class="text-2xl font-bold text-gray-800">Sales System</h2>
+
+  <!-- Sell Item Section -->
+  <div class="space-y-4">
+    <label class="block text-gray-600 font-medium">Select Item to Sell:</label>
+    <!-- <select [(ngModel)]="model.itemId" class="w-full p-2 border rounded-md">
+      <option [ngValue]="0" disabled>Select item</option>
+      <option *ngFor="let item of items" [value]="item.id">
+        {{ item.itemName }} (Available: {{ item.itemQuantity }})
+      </option>
+    </select> -->
+    <select
+      [(ngModel)]="model.itemId"
+      (ngModelChange)="model.itemId = +$event"
+      class="w-full p-2 border rounded-md"
+    >
+      <option [ngValue]="0" disabled>Select item</option>
+      <option *ngFor="let item of items" [value]="item.id">
+        {{ item.itemName }} (Available: {{ item.itemQuantity }})
+      </option>
+    </select>
+
+    <label class="block text-gray-600 font-medium">Quantity to Sell:</label>
+    <input
+      type="number"
+      [(ngModel)]="model.quantity"
+      min="1"
+      class="w-full p-2 border rounded-md"
+    />
+
+    <button
+      (click)="sellItem()"
+      class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+    >
+      Sell Item
+    </button>
+  </div>
+
+  <!-- Restock Section -->
+  <div class="border-t pt-6 mt-6 space-y-4">
+    <h3 class="text-xl font-semibold text-gray-700">Restock Item</h3>
+
+    <label class="block text-gray-600 font-medium">Select Item:</label>
+    <select [(ngModel)]="restockItemId" class="w-full p-2 border rounded-md">
+      <option [ngValue]="0" disabled>Select item</option>
+      <option *ngFor="let item of items" [ngValue]="item.id">
+        <!-- ngvalue preserves original datatype and value converts to string -->
+        {{ item.itemName }}
+      </option>
+    </select>
+
+    <label class="block text-gray-600 font-medium">Quantity to Add:</label>
+    <input
+      type="number"
+      [(ngModel)]="restockQuantity"
+      min="1"
+      class="w-full p-2 border rounded-md"
+    />
+
+    <button
+      (click)="restockItems(restockItemId, restockQuantity)"
+      class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
+    >
+      Restock Item
+    </button>
+  </div>
+</div>
