@@ -12,8 +12,9 @@
   <div>
     <label>Role:</label>
     <select name="role" [(ngModel)]="model.role">
-      <option value="user">User</option>
-      <option value="admin">Admin</option>
+      <option *ngFor="let role of roles" [value]="role.role">
+        {{ role.role }}
+      </option>
     </select>
   </div>
 

@@ -15,11 +15,11 @@ export class DashboardService {
       .getAllSales()
       .pipe(map((sales: SaleInterface[]) => sales.length));
   }
- 
+
   getTotalItemsSoldToday(): Observable<number> {
     return this.saleSystemService.getAllSales().pipe(
       map((sales) => {
-        const today = new Date().toLocaleDateString('en-CA'); 
+        const today = new Date().toLocaleDateString('en-CA');
 
         const todaysSales = sales.filter((sale) => {
           const saleDateOnly = new Date(sale.soldDate).toLocaleDateString(
@@ -41,7 +41,7 @@ export class DashboardService {
   getSalesToday() {
     return this.saleSystemService.getAllSales().pipe(
       map((sales) => {
-        const today = new Date().toLocaleDateString('en-CA'); 
+        const today = new Date().toLocaleDateString('en-CA');
 
         const todaysSales = sales.filter((sale) => {
           const saleDateOnly = new Date(sale.soldDate).toLocaleDateString(
@@ -55,36 +55,39 @@ export class DashboardService {
   }
   getQuantityPerItem(): Observable<{
     itemId: number;
+    itemName: string;
     totalQuantity: number;
   } | null> {
     return this.saleSystemService.getAllSales().pipe(
       map((sales) => {
-        const productSalesMap = new Map<number, number>();
-
+        // Map: itemId => { totalQuantity, itemName }
+        const productSalesMap = new Map<
+          number,
+          { totalQuantity: number; itemName: string }
+        >();
+        console.log('THis is sales', sales);
         sales.forEach((sale) => {
           const itemId = sale.itemId;
           const quantity = Number(sale.quantity);
+          const itemName = sale.itemName;
 
           if (productSalesMap.has(itemId)) {
-            productSalesMap.set(
-              itemId,
-              productSalesMap.get(itemId)! + quantity
-            );
+            const prev = productSalesMap.get(itemId)!;
+            productSalesMap.set(itemId, {
+              totalQuantity: prev.totalQuantity + quantity,
+              itemName: prev.itemName,
+            });
           } else {
-            productSalesMap.set(itemId, quantity);
+            productSalesMap.set(itemId, { totalQuantity: quantity, itemName });
           }
         });
 
-        // Convert map to array of objects
-        const salesArray = Array.from(
-          productSalesMap,
-          ([itemId, totalQuantity]) => ({
-            itemId,
-            totalQuantity,
-          })
-        );
+        const salesArray = Array.from(productSalesMap, ([itemId, data]) => ({
+          itemId,
+          itemName: data.itemName,
+          totalQuantity: data.totalQuantity,
+        }));
 
-        // Find the object with the highest totalQuantity
         if (salesArray.length === 0) return null;
 
         const mostSold = salesArray.reduce((max, curr) =>

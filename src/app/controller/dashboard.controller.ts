@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { DashboardService } from '../services/dashboard-service';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

@@ -11,11 +11,23 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dashboard-component.css',
 })
 export class DashboardComponent {
+  activeTab: 'today' | 'all' = 'today';
   allSales: SaleInterface[] = [];
   allSalesToday: SaleInterface[] = [];
-  quantityPerItems: { itemId: number; totalQuantity: number } | null = null;
+  quantityPerItems: {
+    itemId: number;
+    itemName: string;
+    totalQuantity: number;
+  } | null = null;
+
   totalSales: number = 0;
   totalSalesToday = 0;
+  currentPageAll = 1;
+  itemsPerPageAll = 5;
+
+  currentPageToday = 1;
+  itemsPerPageToday = 5;
+
   constructor(private dashBoardController: DashboardController) {}
   ngOnInit() {
     this.getTotalCount();
@@ -55,5 +67,14 @@ export class DashboardComponent {
     this.dashBoardController.getQuantityPerItem().subscribe((count) => {
       this.quantityPerItems = count;
     });
+  }
+  get paginatedAllSales() {
+    const start = (this.currentPageAll - 1) * this.itemsPerPageAll;
+    return this.allSales.slice(start, start + this.itemsPerPageAll);
+  }
+
+  get paginatedTodaySales() {
+    const start = (this.currentPageToday - 1) * this.itemsPerPageToday;
+    return this.allSalesToday.slice(start, start + this.itemsPerPageToday);
   }
 }

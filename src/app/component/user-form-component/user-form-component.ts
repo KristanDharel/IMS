@@ -3,6 +3,9 @@ import { UserInterface } from '../../interfaces/user-interface';
 import { UserController } from '../../controller/user.controller';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RoleInterface } from '../../interfaces/role-interface';
+import { RoleComponent } from '../role-component/role-component';
+import { RoleCOntroller } from '../../controller/role.controller';
 
 @Component({
   selector: 'app-user-form-component',
@@ -17,15 +20,25 @@ export class UserFormComponent implements OnInit {
     id: 0,
     name: '',
     email: '',
-    role: 'user',
+    role: '',
   };
-
-  constructor(private userController: UserController) {}
+  roles: RoleInterface[] = [];
+  constructor(
+    private userController: UserController,
+    private roleController: RoleCOntroller
+  ) {}
 
   ngOnInit() {
     if (this.user) {
       this.model = { ...this.user };
     }
+    this.loadRoles();
+  }
+  loadRoles() {
+    this.roleController.getallRoles().subscribe((roles) => {
+      this.roles = roles;
+      console.log(this.roles);
+    });
   }
 
   onSubmit(form: NgForm) {
