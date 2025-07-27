@@ -21,7 +21,9 @@ export class ItemFormComponent {
     itemQuantity: 0,
     itemPrice: 0,
     itemAddedDate: '',
-    updatedAt: '',
+    restockQty: 1,
+    sellQty:1,
+    updatedAt: new Date(),
   };
   constructor(private itemController: ItemController) {}
   ngOnInit() {

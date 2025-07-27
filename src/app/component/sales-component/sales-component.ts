@@ -8,21 +8,22 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-sales-component',
   imports: [CommonModule, FormsModule],
-
   templateUrl: './sales-component.html',
   styleUrl: './sales-component.css',
+  standalone: true,
 })
 export class SalesComponent {
   items: ItemInterface[] = [];
+  filterItems: ItemInterface[] = [];
   restockItemId: number = 0;
   restockQuantity: number = 1;
 
-  model: SaleInterface = {
-    id: 0,
-    itemId: 0,
-    quantity: 1,
-    soldDate: '',
-  };
+  // model: SaleInterface = {
+  //   id: 0,
+  //   itemId: 0,
+  //   quantity: 1,
+  //   soldDate: new Date(),
+  // };
   constructor(
     private saleController: SalesController,
     private itemController: ItemController
@@ -36,29 +37,63 @@ export class SalesComponent {
         ...i,
         itemQuantity: Number(i.itemQuantity),
         itemPrice: Number(i.itemPrice),
+        restockQty: 1,
+        sellQty: 1,
       }));
+      this.filterItems = [...this.items];
     });
 
     console.log('item', this.items);
   }
+  filterResults(text: string) {
+    if (!text) {
+      this.filterItems = [...this.items];
+      return;
+    }
+    const lowerText = text.toLowerCase();
+    this.filterItems = this.items.filter((item) =>
+      item.itemName.toLowerCase().includes(lowerText)
+    );
+  }
 
-  sellItem() {
-    const item = this.items.find((i) => i.id === this.model.itemId);
-    console.log(item);
-    if (!item || item.itemQuantity < this.model.quantity) {
+  // sellItem() {
+  //   const item = this.items.find((i) => i.id === this.model.itemId);
+  //   console.log(item);
+  //   if (!item || item.itemQuantity < this.model.quantity) {
+  //     alert('Insufficient stock or invalid item selected');
+  //     return;
+  //   }
+
+  //   item.itemQuantity -= this.model.quantity;
+  //   this.itemController.updateItem(item).subscribe(() => {
+  //     this.saleController.sellItems({ ...this.model }).subscribe(() => {
+  //       this.loadItems();
+  //       // this.loadStats();
+  //     });
+  //   });
+  // }
+  sellItem(item: ItemInterface) {
+    if (!item || item.itemQuantity < item.sellQty) {
       alert('Insufficient stock or invalid item selected');
       return;
     }
 
-    item.itemQuantity -= this.model.quantity;
+    const model: SaleInterface = {
+      id: 0,
+      itemId: item.id,
+      itemName:item.itemName,
+      quantity: item.sellQty,
+      soldDate: new Date(),
+    };
+
+    item.itemQuantity -= item.sellQty;
+
     this.itemController.updateItem(item).subscribe(() => {
-      this.saleController.sellItems({ ...this.model }).subscribe(() => {
+      this.saleController.sellItems(model).subscribe(() => {
         this.loadItems();
-        // this.loadStats();
       });
     });
   }
-
 
   restockItems(itemId: number, itemQuantity: number) {
     const item = this.items.find((i) => i.id === itemId);

@@ -1,0 +1,95 @@
+<div
+  class="p-6 bg-white rounded-2xl shadow-md max-w-3xl mx-auto mt-10 space-y-10"
+>
+  <h2 class="text-xl font-bold text-gray-800 mb-4">Sales by Product</h2>
+  <div class="mt-6 p-4 border rounded-lg shadow bg-green-50 text-center">
+    <h3 class="text-lg font-semibold text-green-800">Most Sold Product</h3>
+    <p
+      *ngIf="quantityPerItems; else noMostSold"
+      class="text-xl mt-2 text-green-700"
+    >
+      Item ID: {{ quantityPerItems.itemId }} <br />
+      Quantity Sold: {{ quantityPerItems.totalQuantity }}
+    </p>
+
+    <ng-template #noMostSold>
+      <p class="text-gray-500">No sales data available.</p>
+    </ng-template>
+  </div>
+
+  <!-- Sales Summary -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
+    <div class="bg-blue-50 p-6 rounded-xl shadow">
+      <h2 class="text-lg font-semibold text-gray-600">Total Sales</h2>
+      <p class="text-4xl font-bold text-blue-600 mt-2">{{ totalSales }}</p>
+    </div>
+
+    <div class="bg-green-50 p-6 rounded-xl shadow">
+      <h2 class="text-lg font-semibold text-gray-600">Total Sales Today</h2>
+      <p class="text-4xl font-bold text-green-600 mt-2">
+        {{ totalSalesToday }}
+      </p>
+    </div>
+  </div>
+
+  <!-- All Sales List -->
+  <div>
+    <h2 class="text-xl font-bold text-gray-800 mb-4">All Sales</h2>
+    <ul *ngIf="allSales.length > 0; else noSales">
+      <li
+        *ngFor="let sale of allSales"
+        class="border p-4 rounded-lg shadow-sm mb-3 bg-gray-50"
+      >
+        <div class="text-sm text-gray-700">
+          <span class="font-medium">Sale ID:</span> {{ sale.id }}
+        </div>
+        <div class="text-sm text-gray-700">
+          <span class="font-medium">Item ID:</span> {{ sale.itemId }}
+        </div>
+        <div class="text-sm text-gray-700">
+          <span class="font-medium">Item Name:</span> {{ sale.itemName }}
+        </div>
+        <div class="text-sm text-gray-700">
+          <span class="font-medium">Quantity:</span> {{ sale.quantity }}
+        </div>
+        <div class="text-sm text-gray-700">
+          <span class="font-medium">Sold At:</span>
+          {{ sale.soldDate | date : "short" }}
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Today's Sales List -->
+  <div>
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Today's Sales</h2>
+    <ul *ngIf="allSalesToday.length > 0; else noSales">
+      <li
+        *ngFor="let sale of allSalesToday"
+        class="border p-4 rounded-lg shadow-sm mb-3 bg-white"
+      >
+        <div class="text-sm text-gray-700">
+          <span class="font-medium">Sale ID:</span> {{ sale.id }}
+        </div>
+        <div class="text-sm text-gray-700">
+          <span class="font-medium">Item ID:</span> {{ sale.itemId }}
+        </div>
+        <div class="text-sm text-gray-700">
+          <span class="font-medium">Item Name:</span> {{ sale.itemName }}
+        </div>
+        <div class="text-sm text-gray-700">
+          <span class="font-medium">Quantity:</span> {{ sale.quantity }}
+        </div>
+        <div class="text-sm text-gray-700">
+          <span class="font-medium">Sold At:</span>
+          {{ sale.soldDate | date : "short" }}
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Empty Sales Template -->
+  <ng-template #noSales>
+    <p class="text-center text-gray-500">No sales available.</p>
+  </ng-template>
+</div>

@@ -4,13 +4,16 @@ export interface ItemInterface {
   itemQuantity: number;
   itemPrice: number;
   itemAddedDate: string;
-  updatedAt: string;
+  restockQty: number;
+  sellQty: number;
+  updatedAt: Date;
 }
 export interface SaleInterface {
   id: number;
   itemId: number;
+  itemName: string;
   quantity: number;
-  soldDate: string;
+  soldDate: Date;
 }
 export interface Stats {
   totalItemsSold: number;
