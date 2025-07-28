@@ -20,6 +20,7 @@ export class UserFormComponent implements OnInit {
     id: 0,
     name: '',
     email: '',
+    password: '',
     role: '',
   };
   roles: RoleInterface[] = [];

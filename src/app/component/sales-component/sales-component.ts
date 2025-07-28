@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
 })
 export class SalesComponent {
+  activeTab: 'sell' | 'restock' = 'sell';
   items: ItemInterface[] = [];
   filterItems: ItemInterface[] = [];
   restockItemId: number = 0;
@@ -81,7 +82,7 @@ export class SalesComponent {
     const model: SaleInterface = {
       id: 0,
       itemId: item.id,
-      itemName:item.itemName,
+      itemName: item.itemName,
       quantity: item.sellQty,
       soldDate: new Date(),
     };

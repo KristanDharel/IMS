@@ -1,0 +1,9 @@
+<p>login-component works!</p>
+<!-- component/login-component.html -->
+<div class="login-form">
+  <input type="email" [(ngModel)]="email" placeholder="Email" />
+  <input type="password" [(ngModel)]="password" placeholder="Password" />
+  <button (click)="login()">Login</button><br />
+  <button (click)="logOut()">Logout</button>
+  <div *ngIf="errorMessage" class="text-red-600">{{ errorMessage }}</div>
+</div>

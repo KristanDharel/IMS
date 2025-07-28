@@ -1,6 +1,5 @@
-export interface UserInterface {
+export interface LoginInterface {
   id: number;
-  name: string;
   email: string;
   password: string;
   role: string;

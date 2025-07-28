@@ -1,7 +1,6 @@
-<div class="p-6 max-w-6xl mx-auto bg-white rounded-xl shadow-md space-y-8">
+<div class="p-6 max-w-6xl mx-auto space-y-8">
   <h2 class="text-2xl font-bold text-gray-800">Sales System</h2>
 
-  <!-- Global Search -->
   <div class="mb-4 flex gap-2 items-center">
     <input
       type="text"
@@ -16,16 +15,32 @@
       Search
     </button>
   </div>
+  <div class="flex gap-4 mb-6">
+    <button
+      class="px-4 py-2 rounded bg-gray-200 text-gray-800 font-medium"
+      [class.bg-green-500]="activeTab === 'sell'"
+      [class.text-white]="activeTab === 'sell'"
+      (click)="activeTab = 'sell'"
+    >
+      Sell
+    </button>
+    <button
+      class="px-4 py-2 rounded bg-gray-200 text-gray-800 font-medium"
+      [class.bg-green-500]="activeTab === 'restock'"
+      [class.text-white]="activeTab === 'restock'"
+      (click)="activeTab = 'restock'"
+    >
+      Restock
+    </button>
+  </div>
 
-  <!-- Sales Section -->
-  <div class="space-y-4">
+  <div *ngIf="activeTab === 'sell'" class="space-y-4">
     <h3 class="text-xl font-semibold text-gray-700">Sell Items</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div
         *ngFor="let item of filterItems"
         class="p-4 border rounded-lg shadow hover:shadow-md cursor-pointer transition"
       >
-        <!-- Item Header with Stock Status -->
         <div class="flex justify-between items-start mb-3">
           <h4 class="text-lg font-semibold text-gray-700">
             {{ item.itemName }}
@@ -43,7 +58,6 @@
           </span>
         </div>
 
-        <!-- Item Details -->
         <div class="space-y-1 mb-4">
           <p class="text-sm text-gray-600">
             Available: {{ item.itemQuantity }}
@@ -52,25 +66,11 @@
           <p class="text-sm text-gray-600">ID: {{ item.id }}</p>
         </div>
 
-        <!-- Sell Controls (shown when selected) -->
         <div class="border-t pt-3 space-y-3">
           <label class="block text-gray-600 font-medium text-sm">
             Quantity to Sell:
           </label>
-          <!-- <input
-            type="number"
-            [(ngModel)]="model.sellQty"
-            min="1"
-            [max]="item.itemQuantity"
-            class="w-full p-2 border rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter quantity"
-          />
-          <button
-            (click)="sellItem(); $event.stopPropagation()"
-            class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition text-sm font-medium"
-          >
-            Sell Item
-          </button> -->
+
           <input
             type="number"
             [(ngModel)]="item.sellQty"
@@ -89,16 +89,14 @@
       </div>
     </div>
   </div>
-
-  <!-- Restock Section -->
-  <div class="border-t pt-6 mt-6 space-y-4">
+  <!-- restock -->
+  <div *ngIf="activeTab === 'restock'" class="space-y-4">
     <h3 class="text-xl font-semibold text-gray-700">Restock Items</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div
         *ngFor="let item of filterItems"
         class="p-4 border rounded-lg shadow hover:shadow-md transition"
       >
-        <!-- Item Header with Stock Status -->
         <div class="flex justify-between items-start mb-3">
           <h4 class="text-lg font-semibold text-gray-700">
             {{ item.itemName }}
@@ -116,7 +114,6 @@
           </span>
         </div>
 
-        <!-- Item Details -->
         <div class="space-y-1 mb-4">
           <p class="text-sm text-gray-600">
             Available: {{ item.itemQuantity }}
@@ -125,7 +122,6 @@
           <p class="text-sm text-gray-600">ID: {{ item.id }}</p>
         </div>
 
-        <!-- Restock Controls -->
         <div class="border-t pt-3 space-y-3">
           <label class="block text-gray-600 font-medium text-sm">
             Quantity to Add:
