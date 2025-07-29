@@ -19,8 +19,8 @@ export class AuthService {
       const defaultUsers: UserInterface[] = [
         {
           id: 1,
-          name: 'Kristan Dharel',
-          email: 'dharelkristan@gmail.com',
+          name: 'Admin',
+          email: 'admin@gmail.com',
           password: 'admin123',
           role: 'admin',
         },

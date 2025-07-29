@@ -15,6 +15,7 @@
           <th class="px-4 py-3 border-b">Item Name</th>
           <th class="px-4 py-3 border-b">Quantity</th>
           <th class="px-4 py-3 border-b">Price</th>
+          <th class="px-4 py-3 border-b">Image</th>
           <th class="px-4 py-3 border-b">Actions</th>
         </tr>
       </thead>
@@ -35,13 +36,13 @@
 
           <td class="px-4 py-3 border-b space-x-2">
             <button
-              class="text-blue-500 hover:underline"
+              class="px-4 bg-green-400 py-2 rounded-xl font-medium transition"
               (click)="updateItem(item)"
             >
               Edit
             </button>
             <button
-              class="text-red-500 hover:underline"
+              class="px-4 bg-red-500 text-white py-2 rounded-xl font-medium transition"
               (click)="deleteItem(item.id)"
             >
               Delete

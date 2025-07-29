@@ -26,13 +26,13 @@
             <td class="px-4 py-3 border-b">{{ user.role }}</td>
             <td class="px-4 py-3 border-b space-x-2">
               <button
-                class="text-blue-500 hover:underline"
+                class="px-4 bg-green-400 py-2 rounded-xl font-medium transition"
                 (click)="updateUser(user)"
               >
                 Edit
               </button>
               <button
-                class="text-red-500 hover:underline"
+                class="px-4 bg-red-500 text-white py-2 rounded-xl font-medium transition"
                 (click)="deleteUser(user.id)"
               >
                 Delete
