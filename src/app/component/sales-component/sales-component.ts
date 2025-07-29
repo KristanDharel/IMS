@@ -19,12 +19,7 @@ export class SalesComponent {
   restockItemId: number = 0;
   restockQuantity: number = 1;
 
-  // model: SaleInterface = {
-  //   id: 0,
-  //   itemId: 0,
-  //   quantity: 1,
-  //   soldDate: new Date(),
-  // };
+
   constructor(
     private saleController: SalesController,
     private itemController: ItemController

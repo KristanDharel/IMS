@@ -1,41 +1,4 @@
-<!-- <nav
-  *ngIf="user"
-  class="bg-gray-800 p-4 text-white flex justify-between items-center"
->
-  <div>
-    <span class="font-bold text-xl">IMS</span>
-  </div>
-  <ul class="flex space-x-4">
-    <li>
-      <a
-        routerLink="/dashboard"
-        *ngIf="user.role === 'admin' || user.role === 'superviser'"
-        >Dashboard</a
-      >
-    </li>
-    <li><a routerLink="/users" *ngIf="user.role === 'admin'">Users</a></li>
-    <li><a routerLink="/roles" *ngIf="user.role === 'admin'">Roles</a></li>
-    <li>
-      <a
-        routerLink="/items"
-        *ngIf="user.role === 'admin' || user.role === 'superviser'"
-        >Items</a
-      >
-    </li>
-    <li>
-      <a
-        routerLink="/sales"
-        *ngIf="user.role === 'admin' || user.role === 'salesPerson'"
-        >Sales</a
-      >
-    </li>
-    <li>
-      <button class="rounded-2xl w-16 bg-red-700" (click)="logout()">
-        Logout
-      </button>
-    </li>
-  </ul>
-</nav> -->
+
 <nav
   *ngIf="user"
   class="bg-gray-900 text-white flex items-center justify-between px-6 py-3 shadow-md"

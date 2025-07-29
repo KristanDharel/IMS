@@ -110,6 +110,12 @@
         class="p-4 border rounded-lg shadow hover:shadow-md transition"
       >
         <div class="flex justify-between items-start mb-3">
+          <img
+            *ngIf="item.itemImage"
+            [src]="item.itemImage"
+            alt="Item Image"
+            class="h-10 w-10 object-cover rounded"
+          />
           <h4 class="text-lg font-semibold text-gray-700">
             {{ item.itemName }}
           </h4>

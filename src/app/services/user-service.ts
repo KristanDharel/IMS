@@ -13,7 +13,6 @@ export class UserService {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
-    // Initialize the users array in local storage if it doesn't exist
     if (this.isBrowser && !localStorage.getItem(this.storageKey)) {
       localStorage.setItem(this.storageKey, JSON.stringify([]));
     }

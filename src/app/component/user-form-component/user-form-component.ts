@@ -48,12 +48,12 @@ export class UserFormComponent implements OnInit {
       return;
     }
     if (this.user) {
-      // Update
+      // update
       this.userController.updateUser(this.model).subscribe(() => {
         this.formClose.emit();
       });
     } else {
-      // Create
+      // create
       this.userController.createUser(this.model).subscribe(() => {
         this.formClose.emit();
       });
