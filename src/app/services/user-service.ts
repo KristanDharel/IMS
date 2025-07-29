@@ -69,7 +69,7 @@ export class UserService {
     users = users.filter((u) => u.id !== id);
     this.setStoredUsers(users);
     // this.getAllUsers();
-    // return this.implementDelay(true);
-    return of(true);
+    return this.implementDelay(true);
+    // return of(true);
   }
 }

@@ -22,7 +22,7 @@ export class ItemFormComponent {
     itemPrice: 0,
     itemAddedDate: '',
     restockQty: 1,
-    sellQty:1,
+    sellQty: 1,
     updatedAt: new Date(),
   };
   constructor(private itemController: ItemController) {}
@@ -33,6 +33,10 @@ export class ItemFormComponent {
   }
 
   onSubmit(form: NgForm) {
+    if (!form.valid) {
+      alert('Form is invalid, please fill all required fields.');
+      return;
+    }
     if (this.item) {
       this.itemController.updateItem(this.model).subscribe(() => {
         this.formClose.emit();

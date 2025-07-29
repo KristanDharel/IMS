@@ -16,12 +16,11 @@
     </div>
   </div>
   <div class="p-4 border rounded-lg shadow bg-green-50 text-center">
-    <h3 class="text-lg font-semibold text-green-800">Most Sold Product</h3>
+    <h3 class="text-lg font-semibold text-green-800">Most Popular Item</h3>
     <p
       *ngIf="quantityPerItems; else noMostSold"
       class="text-xl mt-2 text-green-700"
     >
-      Item ID: {{ quantityPerItems.itemId }} <br />
       Item Name: {{ quantityPerItems.itemName }} <br />
       Quantity Sold: {{ quantityPerItems.totalQuantity }}
     </p>
@@ -32,17 +31,23 @@
   </div>
   <div class="flex gap-4 mb-6">
     <button
-      class="px-4 py-2 rounded bg-gray-200 text-gray-800 font-medium"
+      class="px-4 py-2 rounded-full border font-medium transition"
       [class.bg-green-500]="activeTab === 'today'"
       [class.text-white]="activeTab === 'today'"
+      [class.text-gray-800]="activeTab !== 'today'"
+      [class.border-gray-400]="activeTab !== 'today'"
+      [class.bg-transparent]="activeTab !== 'today'"
       (click)="activeTab = 'today'"
     >
       Today's Sales
     </button>
     <button
-      class="px-4 py-2 rounded bg-gray-200 text-gray-800 font-medium"
+      class="px-4 py-2 rounded-full border font-medium transition"
       [class.bg-green-500]="activeTab === 'all'"
       [class.text-white]="activeTab === 'all'"
+      [class.text-gray-800]="activeTab !== 'all'"
+      [class.border-gray-400]="activeTab !== 'all'"
+      [class.bg-transparent]="activeTab !== 'all'"
       (click)="activeTab = 'all'"
     >
       All Sales

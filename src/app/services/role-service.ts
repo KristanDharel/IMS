@@ -54,7 +54,7 @@ export class RoleService {
     let roles = this.getStoredRole();
     roles = roles.filter((r) => r.id !== id);
     this.setStoredRole(roles);
-    // return this.implementDelay(true);
-    return of(true);
+    return this.implementDelay(true);
+    // return of(true);
   }
 }

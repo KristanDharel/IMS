@@ -10,6 +10,7 @@ import { UserController } from '../../controller/user.controller';
   imports: [CommonModule, FormsModule],
   templateUrl: './login-component.html',
   styleUrl: './login-component.css',
+  standalone: true,
 })
 export class LoginComponent {
   email = '';
@@ -19,16 +20,24 @@ export class LoginComponent {
     private authController: AuthController,
     private router: Router,
     private userController: UserController
-  ) {}
-  // login() {
-  //   this.authController.login(this.email, this.password).subscribe((user) => {
-  //     if (user?.role === 'admin') {
-  //       this.router.navigate(['/dashboard']);
-  //     } else {
-  //       alert('Wrong Credentials');
-  //     }
-  //   });
-  // }
+  ) {
+    const user = this.authController.getLoginDetails();
+    if (user) {
+      switch (user.role) {
+        case 'admin':
+        case 'superviser':
+          this.router.navigate(['/dashboard']);
+          break;
+        case 'salesPerson':
+          this.router.navigate(['/sales']);
+          break;
+        default:
+          this.router.navigate(['/login']);
+          break;
+      }
+    }
+  }
+
   login() {
     this.authController.login(this.email, this.password).subscribe((user) => {
       if (user) {

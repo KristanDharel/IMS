@@ -1,43 +1,49 @@
-<p>role-component works!</p>
-<div class="p-6">
-  <h1 class="text-2xl font-bold mb-4">User List</h1>
+<div class="p-6 max-w-4xl mx-auto">
+  <h1 class="text-2xl font-semibold text-gray-800 mb-6">Role Management</h1>
+
   <button
-    class="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+    class="mb-6 px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition"
     (click)="addNew()"
   >
-    Add Role
+    + Add Role
   </button>
 
-  <div *ngIf="!showForm" class="overflow-x-auto">
-    <table class="min-w-full border border-gray-300">
-      <thead>
-        <tr class="bg-gray-100 text-left">
-          <th class="px-4 py-2 border">Role</th>
-          <th class="px-4 py-2 border">Action</th>
+  <div *ngIf="!showForm" class="bg-white rounded-lg shadow overflow-x-auto">
+    <table class="w-full text-left border-collapse">
+      <thead class="bg-gray-100 text-gray-700">
+        <tr>
+          <th class="px-4 py-3 border-b">Role</th>
+          <th class="px-4 py-3 border-b">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let role of roles" class="hover:bg-gray-50">
-          <td class="px-4 py-2 border">{{ role.role }}</td>
-
-          <td class="px-4 py-2 border">
-            <button class="mr-2 text-blue-600" (click)="updateRole(role)">
+          <td class="px-4 py-3 border-b">{{ role.role }}</td>
+          <td class="px-4 py-3 border-b space-x-2">
+            <button
+              class="text-blue-500 hover:underline"
+              (click)="updateRole(role)"
+            >
               Edit
             </button>
-            <button class="text-red-600" (click)="deleteRole(role.id)">
+            <button
+              class="text-red-500 hover:underline"
+              (click)="deleteRole(role.id)"
+            >
               Delete
             </button>
           </td>
         </tr>
         <tr *ngIf="roles.length === 0">
-          <td colspan="4" class="text-center text-gray-500 p-4">
-            No users found.
+          <td colspan="2" class="text-center text-gray-500 py-6">
+            No roles found.
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div *ngIf="showForm">
+
+  <div *ngIf="showForm" class="mt-6">
     <app-role-form-component
       [role]="selectedRole"
       (formClose)="onFormClose()"

@@ -1,32 +1,71 @@
-<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+<form
+  #userForm="ngForm"
+  (ngSubmit)="onSubmit(userForm)"
+  class="bg-white border p-6 rounded-lg shadow-md space-y-4 max-w-xl mx-auto"
+>
+  <h2 class="text-xl font-semibold text-gray-800 mb-4">
+    {{ user ? "Update" : "Create" }} User
+  </h2>
+
   <div>
-    <label>First Name:</label>
-    <input type="text" name="name" [(ngModel)]="model.name" required />
+    <label class="block text-gray-700 font-medium mb-1">First Name</label>
+    <input
+      type="text"
+      name="name"
+      [(ngModel)]="model.name"
+      required
+      class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
+    />
   </div>
 
   <div>
-    <label>Email:</label>
-    <input type="email" name="email" [(ngModel)]="model.email" required />
+    <label class="block text-gray-700 font-medium mb-1">Email</label>
+    <input
+      type="email"
+      name="email"
+      [(ngModel)]="model.email"
+      required
+      class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
+    />
   </div>
+
   <div>
-    <label>Password:</label>
+    <label class="block text-gray-700 font-medium mb-1">Password</label>
     <input
       type="password"
       name="password"
       [(ngModel)]="model.password"
       required
+      class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
     />
   </div>
 
   <div>
-    <label>Role:</label>
-    <select name="role" [(ngModel)]="model.role">
+    <label class="block text-gray-700 font-medium mb-1">Role</label>
+    <select
+      name="role"
+      [(ngModel)]="model.role"
+      class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
+    >
       <option *ngFor="let role of roles" [value]="role.role">
         {{ role.role }}
       </option>
     </select>
   </div>
 
-  <button type="submit">{{ user ? "Update" : "Create" }} User</button>
-  <button type="button" (click)="onCancel()">Cancel</button>
+  <div class="flex justify-end space-x-3 pt-4">
+    <button
+      type="submit"
+      class="px-4 py-2 rounded-2xl bg-green-600 text-white rounded hover:bg-green-500 transition"
+    >
+      {{ user ? "Update" : "Create" }} User
+    </button>
+    <button
+      type="button"
+      (click)="onCancel()"
+      class="px-4 py-2 rounded-2xl bg-red-500 text-white rounded hover:bg-red-400 transition"
+    >
+      Cancel
+    </button>
+  </div>
 </form>

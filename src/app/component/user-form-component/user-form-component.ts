@@ -43,6 +43,10 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    if (!form.valid) {
+      alert('Form is invalid, please fill all required fields.');
+      return;
+    }
     if (this.user) {
       // Update
       this.userController.updateUser(this.model).subscribe(() => {

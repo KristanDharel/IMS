@@ -13,7 +13,6 @@ export class ItemService {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
-    // Initialize the users array in local storage if it doesn't exist
     if (this.isBrowser && !localStorage.getItem(this.storageKey)) {
       localStorage.setItem(this.storageKey, JSON.stringify([]));
     }
@@ -62,7 +61,7 @@ export class ItemService {
     let items = this.getStoredItems();
     items = items.filter((i) => i.id !== id);
     this.setStoredItem(items);
-    // return this.implementDelay(true);
-    return of(true);
+    return this.implementDelay(true);
+    // return of(true);
   }
 }

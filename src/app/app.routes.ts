@@ -5,12 +5,45 @@ import { ItemComponent } from './component/item-component/item-component';
 import { SalesComponent } from './component/sales-component/sales-component';
 import { DashboardComponent } from './component/dashboard-component/dashboard-component';
 import { LoginComponent } from './component/login-component/login-component';
+import { authGuard } from './auth-guard';
 
 export const routes: Routes = [
-  { path: 'users', component: UserComponent },
-  { path: 'roles', component: RoleComponent },
-  { path: 'items', component: ItemComponent },
-  { path: 'sales', component: SalesComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'users',
+    component: UserComponent,
+    canActivate: [authGuard],
+    data: { roles: ['admin'] },
+  },
+  {
+    path: 'roles',
+    component: RoleComponent,
+    canActivate: [authGuard],
+    data: { roles: ['admin'] },
+  },
+  {
+    path: 'items',
+    component: ItemComponent,
+    canActivate: [authGuard],
+    data: { roles: ['admin', 'superviser'] },
+  },
+  {
+    path: 'sales',
+    component: SalesComponent,
+    canActivate: [authGuard],
+    data: { roles: ['admin', 'salesPerson'] },
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard],
+    data: { roles: ['admin', 'superviser'] },
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: '**',
+    redirectTo: 'login',
+  },
 ];

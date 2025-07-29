@@ -25,6 +25,10 @@ export class RoleFormComponent {
     }
   }
   onSubmit(form: NgForm) {
+    if (!form.valid) {
+      alert('Form is invalid, please fill all required fields.');
+      return;
+    }
     if (this.role) {
       this.roleController.updateRole(this.model).subscribe(() => {
         this.formClose.emit();
