@@ -39,6 +39,21 @@
       class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
     />
   </div>
+<div>
+  <label class="block text-gray-700 font-medium mb-1">Item Image</label>
+  <input
+    type="file"
+    (change)="onImageSelected($event)"
+    accept="image/*"
+    class="w-full p-2 border rounded-md"
+  />
+  <img
+    *ngIf="model.itemImage"
+    [src]="model.itemImage"
+    alt="Item Preview"
+    class="mt-2 max-h-40 object-contain border rounded"
+  />
+</div>
 
   <div class="flex justify-end space-x-3 pt-4">
     <button

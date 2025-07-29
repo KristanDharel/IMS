@@ -22,7 +22,17 @@
         <tr *ngFor="let item of items" class="hover:bg-gray-50">
           <td class="px-4 py-3 border-b">{{ item.itemName }}</td>
           <td class="px-4 py-3 border-b">{{ item.itemQuantity }}</td>
+
           <td class="px-4 py-3 border-b">Rs. {{ item.itemPrice }}</td>
+          <td class="px-4 py-3 border-b">
+            <img
+              *ngIf="item.itemImage"
+              [src]="item.itemImage"
+              alt="Item Image"
+              class="h-10 w-10 object-cover rounded"
+            />
+          </td>
+
           <td class="px-4 py-3 border-b space-x-2">
             <button
               class="text-blue-500 hover:underline"

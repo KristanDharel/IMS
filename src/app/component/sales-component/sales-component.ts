@@ -57,22 +57,7 @@ export class SalesComponent {
     );
   }
 
-  // sellItem() {
-  //   const item = this.items.find((i) => i.id === this.model.itemId);
-  //   console.log(item);
-  //   if (!item || item.itemQuantity < this.model.quantity) {
-  //     alert('Insufficient stock or invalid item selected');
-  //     return;
-  //   }
 
-  //   item.itemQuantity -= this.model.quantity;
-  //   this.itemController.updateItem(item).subscribe(() => {
-  //     this.saleController.sellItems({ ...this.model }).subscribe(() => {
-  //       this.loadItems();
-  //       // this.loadStats();
-  //     });
-  //   });
-  // }
   sellItem(item: ItemInterface) {
     if (!item || item.itemQuantity < item.sellQty) {
       alert('Insufficient stock or invalid item selected');

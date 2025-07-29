@@ -7,6 +7,7 @@ export interface ItemInterface {
   restockQty: number;
   sellQty: number;
   updatedAt: Date;
+  itemImage?: string;
 }
 export interface SaleInterface {
   id: number;

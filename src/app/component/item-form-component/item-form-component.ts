@@ -47,6 +47,17 @@ export class ItemFormComponent {
       });
     }
   }
+  onImageSelected(event: Event): void {
+  const file = (event.target as HTMLInputElement).files?.[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.model.itemImage = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
   onCancel() {
     this.formClose.emit();
   }
