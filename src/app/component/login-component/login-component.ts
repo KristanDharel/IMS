@@ -9,7 +9,7 @@ import { UserController } from '../../controller/user.controller';
   selector: 'app-login-component',
   imports: [CommonModule, FormsModule],
   templateUrl: './login-component.html',
-  styleUrl: './login-component.css',
+  styleUrls: ['./login-component.css'],
   standalone: true,
 })
 export class LoginComponent {
@@ -25,7 +25,7 @@ export class LoginComponent {
     if (user) {
       switch (user.role) {
         case 'admin':
-        case 'superviser':
+        case 'supervisor':
           this.router.navigate(['/dashboard']);
           break;
         case 'salesPerson':
@@ -43,7 +43,7 @@ export class LoginComponent {
       if (user) {
         switch (user.role) {
           case 'admin':
-          case 'superviser':
+          case 'supervisor':
             this.router.navigate(['/dashboard']);
             break;
           case 'salesPerson':
