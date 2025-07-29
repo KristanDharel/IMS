@@ -1,10 +1,10 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header-component',
-  imports: [NgIf, RouterLink],
+  imports: [NgIf, RouterLink, RouterLinkActive],
   templateUrl: './header-component.html',
   styleUrls: ['./header-component.css'],
 

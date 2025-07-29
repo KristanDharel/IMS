@@ -1,4 +1,4 @@
-<nav
+<!-- <nav
   *ngIf="user"
   class="bg-gray-900 text-white flex items-center justify-between px-6 py-3 shadow-md"
 >
@@ -42,6 +42,76 @@
     <li>
       <a
         routerLink="/sales"
+        *ngIf="user.role === 'admin' || user.role === 'salesPerson'"
+        class="hover:text-white transition"
+        >Sales</a
+      >
+    </li>
+  </ul>
+
+  <div>
+    <button
+      (click)="logout()"
+      class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full text-white font-semibold transition"
+    >
+      Logout
+    </button>
+  </div>
+</nav> -->
+<nav
+  *ngIf="user"
+  class="bg-gray-900 text-white flex items-center justify-between px-6 py-3 shadow-md"
+>
+  <div class="flex items-center space-x-3">
+    <span class="text-2xl font-extrabold tracking-wider">IMS</span>
+  </div>
+
+  <ul class="hidden md:flex space-x-6 font-medium text-gray-300">
+    <li>
+      <a
+        routerLink="/dashboard"
+        routerLinkActive="text-white border-b-2 border-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        *ngIf="user.role === 'admin' || user.role === 'supervisor'"
+        class="hover:text-white transition"
+        >Dashboard</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/users"
+        routerLinkActive="text-white border-b-2 border-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        *ngIf="user.role === 'admin'"
+        class="hover:text-white transition"
+        >Users</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/roles"
+        routerLinkActive="text-white border-b-2 border-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        *ngIf="user.role === 'admin'"
+        class="hover:text-white transition"
+        >Roles</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/items"
+        routerLinkActive="text-white border-b-2 border-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        *ngIf="user.role === 'admin' || user.role === 'supervisor'"
+        class="hover:text-white transition"
+        >Items</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/sales"
+        routerLinkActive="text-white border-b-2 border-white"
+        [routerLinkActiveOptions]="{ exact: true }"
         *ngIf="user.role === 'admin' || user.role === 'salesPerson'"
         class="hover:text-white transition"
         >Sales</a
