@@ -1,7 +1,5 @@
 Inventory Management & Sales Dashboard System
-https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
-https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+
 
 Project Overview
 This is an Inventory Management and Sales Dashboard System built with Angular. The application provides:
