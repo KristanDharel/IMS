@@ -1,59 +1,70 @@
-# IMS
+Inventory Management & Sales Dashboard System
+https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
+https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.3.
+Project Overview
+This is an Inventory Management and Sales Dashboard System built with Angular. The application provides:
 
-## Development server
+Role-based access control for different system functionalities
 
-To start a local development server, run:
+Comprehensive inventory management
 
-```bash
-ng serve
-```
+Sales transaction processing
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Analytical dashboard for business insights
 
-## Code scaffolding
+User and role management system
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Features
+User Management (Admin only)
+Create, Read, Update, Delete users
 
-```bash
-ng generate component component-name
-```
+Assign roles to users
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Secure authentication system
 
-```bash
-ng generate --help
-```
+Role Management (Admin only)
+Create and manage system roles
 
-## Building
+Default roles: admin, salesPerson, supervisor
 
-To build the project run:
+Inventory Management (Admin & Supervisor)
+Add new inventory items
 
-```bash
-ng build
-```
+Edit existing items
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+View inventory status
 
-## Running unit tests
+Delete items when needed
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Sales System (Admin & Salesperson)
+Process sales transactions
 
-```bash
-ng test
-```
+Restock inventory items
 
-## Running end-to-end tests
+Search functionality for quick item lookup
 
-For end-to-end (e2e) testing, run:
+Dashboard (Admin & Supervisor)
+Real-time sales analytics:
 
-```bash
-ng e2e
-```
+Total items sold
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Today's sales
 
-## Additional Resources
+Most popular items
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Inventory status overview
+
+Technologies Used
+Angular Framework - Frontend application framework
+
+TypeScript - Primary programming language
+
+Tailwind CSS - Utility-first CSS framework for styling
+
+Local Storage API - Browser-based data persistence
+
+RxJS - Reactive programming with observables
+
+Angular Router - Client-side navigation
